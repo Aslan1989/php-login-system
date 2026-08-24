@@ -2,7 +2,7 @@
 
 // use stricter type handling
 declare(strict_types=1);
-
+// DSN means Data Source Name
 $dsn = "mysql:host=localhost;dbname=logindatabase";
 $dbUsername = "root";
 $dbPassword = "";
