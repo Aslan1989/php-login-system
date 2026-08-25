@@ -33,10 +33,12 @@ function set_user(object $pdo,
 	$stmt = $pdo->prepare($query);
 
 	$options = [
-		'cost'
-	]
+		'cost' => 12
+	];
+
+	$hashedPwd = password_hash($password, PASSWORD_BCRYPT, $options);
 	$stmt->bindParam(":username", $username);
-	$stmt->bindParam(":passwd", $password);
+	$stmt->bindParam(":passwd", $hashedPwd);
 	$stmt->bindParam(":email", $email);
 	$stmt->execute();
 }
