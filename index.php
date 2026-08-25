@@ -25,15 +25,24 @@ require_once 'includes/login_view.inc.php';
 <body>
 
     <h1>PHP Login System</h1>
-
 	<br>
-	<h3>Login</h3>
+	<h3>
+		<?php
+		output_username();
+		?>
+	</h3>
 
-	<form action="includes/login.inc.php" method="post">
-		<input type="text" name="username" placeholder="Username">
-		<input type="password" name="passwd" placeholder="Password">
-		<button>Login</button>
-	</form>
+	<?php
+	 if (!isset($_SESSION["user_id"])) { ?>
+		<h3>Login</h3>
+
+		<form action="includes/login.inc.php" method="post">
+			<input type="text" name="username" placeholder="Username">
+			<input type="password" name="passwd" placeholder="Password">
+			<button>Login</button>
+		</form>
+	<?php } ?>
+	
 	<?php
 	check_login_errors();
 	?>
