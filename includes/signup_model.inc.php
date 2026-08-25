@@ -23,3 +23,20 @@ function get_email(object $pdo, string $email)
 	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	return $result;
 }
+
+function set_user(object $pdo,
+    string $username,
+    string $email,
+    string $password) {
+	$query = "INSERT INTO users (username, passwd, email) 
+	VALUES (:username, :passwd, :email);";
+	$stmt = $pdo->prepare($query);
+
+	$options = [
+		'cost'
+	]
+	$stmt->bindParam(":username", $username);
+	$stmt->bindParam(":passwd", $password);
+	$stmt->bindParam(":email", $email);
+	$stmt->execute();
+}
