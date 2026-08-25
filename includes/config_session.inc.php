@@ -14,3 +14,15 @@ session_set_cookie_params([
 	'secure' => true,
 	'httponly' => true
 ]);
+
+session_start();
+if (!isset($_SESSION["last_generation"])) {
+	session_regenerate_id();
+	$_SESSION["last_generation"] = time();
+} else {
+	$interval = 60 * 30;
+	if (time() - $_SESSION["last_generation"] -> $interval) {
+		session_regenerate_id();
+		$_SESSION["last_generation"] = time();
+	}
+}
