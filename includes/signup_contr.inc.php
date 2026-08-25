@@ -26,3 +26,21 @@ function is_email_invalid(
 	}
 	return false;
 }
+
+function is_username_taken(object $pdo,
+    string $username,
+): bool { 
+	if (get_username($pdo, $username)) {
+		return true;
+	}
+	return false;
+}
+
+function is_email_regestred(object $pdo,
+    string $email,
+): bool { 
+	if (get_email($pdo, $email)) {
+		return true;
+	}
+	return false;
+}
