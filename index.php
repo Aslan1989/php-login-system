@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+require_once 'includes/config_session.inc.php';
+require_once 'includes/signup_view.inc.php';
 
 ?>
 
@@ -39,8 +40,12 @@ declare(strict_types=1);
 		<input type="text" name="username" placeholder="Username">
 		<input type="password" name="passwd" placeholder="Password">
 		<input type="text" name="email" placeholder="Email">
-		<button>Login</button>
+		<button>Signup</button>
 	</form>
+
+	<?php
+	check_signup_errors();
+	?>
 </body>
 
 </html>

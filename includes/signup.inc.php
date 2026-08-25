@@ -11,7 +11,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		require_once 'dbh.inc.php';
 		require_once 'signup_model.inc.php';
-		//require_once 'signup_view.inc.php';
 		require_once 'signup_contr.inc.php';
 
 		// array that will collect validation errors.
@@ -33,9 +32,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
 		if ($errors) {
 			$_SESSION["errors_signup"] = $errors;
-			foreach ($errors as $error){
-				echo "<p>$error</p>";
-			}
+			header("Location: ../index.php");
 			die();
 		}
 
