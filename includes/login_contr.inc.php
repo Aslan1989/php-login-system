@@ -15,10 +15,16 @@ function is_input_empty(
 	return false;
 }
 
-function is_username_taken(object $pdo,
-    string $username,
-): bool { 
-	if (get_username($pdo, $username)) {
+function is_username_wrong(array|bool $result,
+) { 
+	if (!$result) {
+		return true;
+	}
+	return false;
+}
+
+function is_password_wrong(string $password, string $hashedPwd) { 
+	if (!password_verify($password, $hashedPwd)) {
 		return true;
 	}
 	return false;
