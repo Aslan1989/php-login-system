@@ -7,7 +7,24 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 	$email = $_POST["email"];
 	$password = $_POST["password"];
 
-	echo "Signup request received.";
+	require_once "signup_contr.inc.php";
+
+	// array that will collect validation errors.
+	$errors = [];
+	if(is_input_empty($username, $email, $password)) {
+		$errors["empty_input"] = "Please fill in all fields";
+	}
+	if(is_email_invalid($email)) {
+		$errors["invalid_email"] = "Please enter a valid email address!";
+	}
+
+	if ($errors) {
+		foreach ($errors as $error){
+			echo "<p>$error</p>";
+		}
+		die();
+	}
+	echo "Validation successful!";
 } else {
 	header("Location: ../index.php");
 	die();
