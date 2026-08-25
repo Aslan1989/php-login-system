@@ -5,9 +5,15 @@ declare(strict_types=1);
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 	$username = $_POST["username"];
 	$email = $_POST["email"];
-	$password = $_POST["password"];
+	$password = $_POST["passwd"];
 
-	require_once "signup_contr.inc.php";
+	try {
+
+		require_once "dbh.inc.php";
+
+	} catch (PDOException $e) {
+		die("Query failed: " . $e->getMessage());
+	}
 
 	// array that will collect validation errors.
 	$errors = [];
